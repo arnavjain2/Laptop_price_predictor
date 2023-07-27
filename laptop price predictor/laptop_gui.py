@@ -17,7 +17,7 @@ root = tk.Tk()
 root.geometry("650x700")
 df1 = pickle.load(open('laptop dataset\linearregression.pkl', 'rb'))
 print(df1)
-bg = ImageTk.PhotoImage(Image.open("laptop dataset/download.jpg").resize((650,700), Image.ANTIALIAS))
+bg = ImageTk.PhotoImage(Image.open("laptop dataset/back.jpg").resize((650,700), Image.ANTIALIAS))
   
 # Create Canvas
 canvas1 = tk.Canvas( root, width = 650,
@@ -30,8 +30,8 @@ canvas1.create_image( 0, 0, image = bg,
                      anchor = "nw")
 # #C48EFE
 style = ttk.Style(root)
-style.configure("TFrame", background="#C48EFE")
-style.configure('TLabel',background='#C48EFE')
+style.configure("TFrame", background="#96ACB9")
+style.configure('TLabel',background='#96ACB9')
 company_name = df1.named_steps['columntransformer'].named_transformers_['onehotencoder'].categories[0]
 print(company_name)
 laptop_type = df1.named_steps['columntransformer'].named_transformers_['onehotencoder'].categories[1]
@@ -57,14 +57,14 @@ def predict_model():
     prediction.config(text=np.exp(y_pred1)[0])
     prediction.pack()
     frame16.pack()
-    frame16_canvas = canvas1.create_window( 150, 680, anchor='nw',
+    frame16_canvas = canvas1.create_window( 200, 680, anchor='nw',
                                        window = frame16 , width=270)
 frame17 = ttk.Frame(root)
 img = ImageTk.PhotoImage(Image.open("laptop dataset\download.jpeg").resize((35,50), Image.ANTIALIAS))
 label2 = tk.Label(frame17,image=img)
 label2.pack(side=tk.LEFT,padx=10)
 label1 = tk.Label(frame17,text='LAPTOP PRICE PREDICTION' , font=('',24), background='#BBC4FE')
-label1.pack(side = tk.BOTTOM)
+label1.pack(side = tk.LEFT , padx=50)
 head = canvas1.create_window( 0, 0,anchor='nw',
                                        window = frame17 , width=700)
 # name of company
@@ -78,7 +78,7 @@ frame.pack(pady=10)
 heading = canvas1.create_window( 0, 10,anchor='nw',
                                        window = frame , width=700)
 
-frame_canvas = canvas1.create_window( 150, 80, 
+frame_canvas = canvas1.create_window( 200, 80, 
                                        anchor = "nw",
                                        window = frame,width=270)
 #type of laptop
@@ -89,7 +89,7 @@ type_laptop = ttk.Combobox(frame1,textvariable=type_selected)
 type_laptop['values'] = [*laptop_type]
 type_laptop.pack(side=tk.RIGHT, padx=5)
 frame1.pack()
-frame1_canvas = canvas1.create_window( 150, 120, 
+frame1_canvas = canvas1.create_window( 200, 120, 
                                        anchor = "nw",
                                        window = frame1 , width=270)
 #inches
@@ -99,7 +99,7 @@ inches = tk.IntVar()
 inch = tk.Entry(frame2, textvariable=inches)
 inch.pack(side=tk.RIGHT, padx=5)
 frame2.pack()
-frame2_canvas = canvas1.create_window( 150, 160, 
+frame2_canvas = canvas1.create_window( 200, 160, 
                                        anchor = "nw",
                                        window = frame2 , width=270)
 #cpu 
@@ -110,7 +110,7 @@ cpu_laptop = ttk.Combobox(frame3,textvariable=cpu_selected)
 cpu_laptop['values'] = [*laptop_processor]
 cpu_laptop.pack(side=tk.RIGHT, padx=5)
 frame3.pack()
-frame3_canvas = canvas1.create_window( 150, 200, 
+frame3_canvas = canvas1.create_window( 200, 200, 
                                        anchor = "nw",
                                        window = frame3 , width=270)
 
@@ -121,7 +121,7 @@ ram = tk.IntVar()
 ram_laptop = ttk.Combobox(frame4,textvariable=ram)
 ram_laptop['values'] = [2,4,6,8,12,16,24,32,64]
 ram_laptop.pack(side=tk.RIGHT, padx=5)
-frame4_canvas = canvas1.create_window( 150, 240, 
+frame4_canvas = canvas1.create_window( 200, 240, 
                                        anchor = "nw",
                                        window = frame4 , width=270)
 # gpu_brand
@@ -133,7 +133,7 @@ gpubrand_laptop['values'] = [*laptop_cardcompany]
 gpubrand_laptop.pack(side=tk.RIGHT, padx=5)
 gpubrand_laptop.bind('<<ComboboxSelected>>', printvar)
 frame5.pack()
-frame5_canvas = canvas1.create_window( 150, 280, 
+frame5_canvas = canvas1.create_window( 200, 280, 
                                        anchor = "nw",
                                        window = frame5 , width=270)
 #gpu
@@ -143,7 +143,7 @@ gpu_selected = tk.StringVar()
 gpu_laptop = ttk.Combobox(frame6,textvariable=gpu_selected)
 gpu_laptop.pack(side=tk.RIGHT, padx=5)
 frame6.pack()
-frame6_canvas = canvas1.create_window( 150, 320, 
+frame6_canvas = canvas1.create_window( 200, 320, 
                                        anchor = "nw",
                                        window = frame6 , width=270)
 
@@ -155,7 +155,7 @@ opsys_laptop = ttk.Combobox(frame7,textvariable=opsys_selected)
 opsys_laptop['values'] = [*laptop_os]
 opsys_laptop.pack(side=tk.RIGHT, padx=5)
 frame7.pack()
-frame7_canvas = canvas1.create_window( 150, 360, 
+frame7_canvas = canvas1.create_window( 200, 360, 
                                        anchor = "nw",
                                        window = frame7 , width=270)
 #weight
@@ -165,7 +165,7 @@ weight = tk.IntVar()
 weight_laptop = tk.Entry(frame8, textvariable=weight)
 weight_laptop.pack(side=tk.RIGHT, padx=5)
 frame8.pack()
-frame8_canvas = canvas1.create_window( 150, 400, 
+frame8_canvas = canvas1.create_window( 200, 400, 
                                        anchor = "nw",
                                        window = frame8 , width=270)
 
@@ -177,7 +177,7 @@ touch_laptop = ttk.Combobox(frame9,textvariable=touch_selected)
 touch_laptop['values'] = [0,1]
 touch_laptop.pack(side=tk.RIGHT, padx=5)
 frame9.pack()
-frame9_canvas = canvas1.create_window( 150, 440, 
+frame9_canvas = canvas1.create_window( 200, 440, 
                                        anchor = "nw",
                                        window = frame9 , width=270)
 # screenresolution
@@ -187,7 +187,7 @@ res = tk.StringVar()
 res_laptop = tk.Entry(frame10, textvariable=res)
 res_laptop.pack(side=tk.RIGHT, padx=5)
 frame10.pack()
-frame10_canvas = canvas1.create_window( 150, 480, anchor='nw',
+frame10_canvas = canvas1.create_window( 200, 480, anchor='nw',
                                        window = frame10 , width=270)
 
 #IPS
@@ -198,7 +198,7 @@ ips_laptop = ttk.Combobox(frame11,textvariable=ips_selected)
 ips_laptop['values'] = [0,1]
 ips_laptop.pack(side=tk.RIGHT, padx=5)
 frame11.pack()
-frame11_canvas = canvas1.create_window( 150, 520, anchor='nw', window=frame11,width=270)
+frame11_canvas = canvas1.create_window( 200, 520, anchor='nw', window=frame11,width=270)
 
 # HDD
 frame12 = ttk.Frame(root)
@@ -207,7 +207,7 @@ hdd = tk.StringVar()
 hdd_laptop = tk.Entry(frame12, textvariable=hdd)
 hdd_laptop.pack(side=tk.RIGHT, padx=5)
 frame12.pack()
-frame12_canvas = canvas1.create_window( 150, 560, anchor='nw',
+frame12_canvas = canvas1.create_window( 200, 560, anchor='nw',
                                        window = frame12 , width=270)
 
 # SSD
@@ -217,14 +217,14 @@ ssd = tk.StringVar()
 ssd_laptop = tk.Entry(frame14, textvariable=ssd)
 ssd_laptop.pack(side=tk.RIGHT, padx=5)
 frame14.pack()
-frame14_canvas = canvas1.create_window( 150, 600, anchor='nw',
+frame14_canvas = canvas1.create_window( 200, 600, anchor='nw',
                                        window = frame14 , width=270)
 
 # submit
 frame15 = ttk.Frame(root)
 submit = tk.Button(frame15,text='PREDICT' , command=predict_model).pack(padx=5)
 frame15.pack()
-frame15_canvas = canvas1.create_window( 150, 640, anchor='nw',
+frame15_canvas = canvas1.create_window( 200, 640, anchor='nw',
                                        window = frame15 , width=270)
 
 # output
